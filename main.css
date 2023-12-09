@@ -1,0 +1,138 @@
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    line-height: 1.4; 
+    background-color: #000000;
+    color: white;
+    
+
+}
+
+.nav {
+    position: fixed;
+    display: block;
+    bottom: 20px;
+    right: 20px;
+
+}
+
+.nav2 {
+    position: fixed;
+    display: block;
+    bottom: 20px;
+    left: 20px;
+    transform: scaleX(-1);
+}
+
+
+button {
+    background-color: #000000;
+    color: white;
+    font-weight: bolder; 
+    font-size: 1.2rem;
+    border: solid white;
+    border-radius: 25px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 200px;
+
+}
+
+button:hover {
+    border: double red;
+    cursor: pointer;
+    color: red;
+}
+
+.backbutton{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    place-self: end;
+}
+
+
+.name {
+    text-align: center;
+    writing-mode: vertical-rl;
+    font-size: 100px;
+
+}
+
+.name:hover{
+    color: blue;
+}
+
+.title-name {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    position: fixed;
+    top: 0;
+    left: 100px;
+    height: 100%;
+    writing-mode: vertical-rl;
+
+}
+
+.top{
+    margin-top: 200px;
+}
+
+.middle{
+    text-align: center;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .name {
+        margin-top: 100px;
+    
+    }
+
+
+}
+
+.scroll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    -webkit-animation-name: move;
+    -webkit-animation-duration: 16s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: right;
+    -webkit-animation-timing-function: linear;
+
+}
+
+@-webkit-keyframes move {
+    0% {
+      margin-top: -50%;
+    }
+    100% {
+      margin-top: 120%;
+    }
+}
+
+.opposite_scroll {
+    -webkit-animation-name: opposite_move;
+    -webkit-animation-duration: 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: right;
+    -webkit-animation-timing-function: linear;
+
+}
+
+@-webkit-keyframes opposite_move {
+    0% {
+      margin-top: 150%;
+    }
+    100% {
+      margin-top: -50%;
+    }
+}
+

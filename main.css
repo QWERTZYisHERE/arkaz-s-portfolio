@@ -122,7 +122,9 @@ button:hover {
 
 @media screen and (max-width: 600px) {
     .name {
-        margin-top: 100px;
+        margin-top: 70px;
+        font-size: 50px;
+        writing-mode: horizontal-tb;
     
     }
 
@@ -170,3 +172,82 @@ button:hover {
     }
 }
 
+@keyframes spiral-1 {
+    0% {
+        transform: translate(-750px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(770px);
+        opacity: 1;
+    }
+}
+
+@keyframes spiral-2 {
+    0% {
+        transform: translate(-750px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(770px);
+        opacity: 1;
+    }
+}
+
+.vertical-left {
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.type-6-3 {
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    color: white;
+    margin-top: -150px;
+    font-size: 75px;
+    animation: spiral-3 8s infinite linear;
+    z-index: 1;
+    writing-mode: vertical-lr;
+}
+
+@keyframes spiral-3 {
+    0% {
+        transform: translateY(-900px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(1000px);
+        opacity: 1;
+    }
+}
+
+.type-6-4 {
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    color: white;
+    margin-top: -150px;
+    font-size: 75px;
+    animation: spiral-4 8s infinite linear 4s;
+    z-index: 1;
+    opacity: 0;
+    writing-mode: vertical-lr;
+}
+
+@keyframes spiral-4 {
+    0% {
+        transform: translateY(-900px);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(1000px);
+        opacity: 1;
+    }
+}

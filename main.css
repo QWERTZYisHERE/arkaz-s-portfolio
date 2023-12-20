@@ -120,16 +120,7 @@ button:hover {
 
 
 
-@media screen and (max-width: 600px) {
-    .name {
-        margin-top: 70px;
-        font-size: 50px;
-        writing-mode: horizontal-tb;
-    
-    }
 
-
-}
 
 .scroll {
     position: fixed;
@@ -250,4 +241,37 @@ button:hover {
         transform: translateY(1000px);
         opacity: 1;
     }
+}
+
+.games_picture{
+    width: 30%;
+    border: solid white 2px;
+    border-radius: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+
+
+}
+
+.games_picture:hover{
+    border: red solid 2px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .name {
+        margin-top: 70px;
+        font-size: 50px;
+        writing-mode: horizontal-tb;
+    
+    }
+
+    .games_picture{
+        width: 50%;
+        margin-top: 40px;
+    }
+
+
 }

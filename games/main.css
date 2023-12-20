@@ -1,0 +1,36 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: white;
+    text-align: center;
+    
+}
+
+#title{
+    margin-top: 100px;
+    text-decoration: underline;
+    font-size: 50px;
+}
+
+#reset-button{
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+}
+
+button{
+    border: solid red;
+    background-color: black;
+
+}
+
+button:hover{
+    border: double red;
+    cursor: pointer;
+}
+
+.rps-button{
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 50px;
+}

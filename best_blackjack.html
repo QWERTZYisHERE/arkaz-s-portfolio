@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Simple Game of Black Jack</title>
+</head>
+
+<body>
+    <pre>
+    .------.            _     _            _    _            _    
+    |A_  _ |.          | |   | |          | |  (_)          | |   
+    |( \/ ).-----.     | |__ | | __ _  ___| | ___  __ _  ___| | __
+    | \  /|K /\  |     | '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
+    |  \/ | /  \ |     | |_/ | | /_| | /__|   /| | /_| | /__|   | 
+    `-----| \  / |     |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\
+          |  \/ K|                            _/ |                
+`------'                          |__/      
+    </pre>
+    <br>
+    <br>
+    <p>Would you like to play?</p>
+    <button onclick="playing = true; play_game()">yes</button> <button onclick="window.location.href = 'games.html';">no</button>
+
+
+    <p class="js-user"></p>
+    <p class="js-computer"></p>
+    <p class="js-gametext"></p>
+    <p class="js-finaluser"></p>
+    <p class="js-finalcomputer"></p>
+    <p class="js-result"></p>
+
+    <style>
+        body {
+            background-color: black;
+            color: wheat;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button {
+            background-color: black;
+            color: wheat;
+            border: solid 1px wheat;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function cards() {
+            let deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+            let two_cards = [deck[getRandomInt(14)], deck[getRandomInt(14)]];
+            return two_cards;
+        }
+
+        function one_more_cards() {
+            let deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+            let cards = [deck[getRandomInt(13)]];
+            return cards;
+        }
+
+        function total_points(the_user) {
+            let totals = 0;
+            for (let i = 0; i < the_user.length; i++) {
+                totals = totals + parseInt(the_user[i]);
+            }
+            return parseInt(totals);
+        }
+
+
+        function compare(user_score, computer_score) {
+            if (user_score > 21 && computer_score > 21) {
+                return "You went over. You lose";
+            } else if (user_score === computer_score) {
+                return "Draw";
+            } else if (computer_score === 21) {
+                return "Lose, opponent has Blackjack";
+            } else if (user_score === 21) {
+                return "Win with a Blackjack";
+            } else if (user_score > 21) {
+                return "You went over. You lose";
+            } else if (computer_score > 21) {
+                return "Opponent went over. You win";
+            } else if (user_score > computer_score) {
+                return "You win";
+            } else {
+                return "You lose";
+
+            }
+
+        }
+
+        let score = {
+            user: [],
+            computer: [],
+            computer_score: 0,
+            user_score: 0
+        }
+
+
+
+        let playing = false;
+        function play_game() {
+
+            score.user = cards();
+            score.computer = cards();
+
+            score.user_score = total_points(score.user);
+            score.computer_score = total_points(score.computer);
+
+            document.querySelector('.js-user').innerHTML = `Your cards: ${score.user}, points: ${score.user_score}`;
+            document.querySelector('.js-computer').innerHTML = `Computer's first card: ${score.computer[0]}`;
+
+            function idontknwo() {
+                if (score.user_score == 0 || score.computer_score == 0 || score.user_score > 21) {
+                    document.querySelector('.js-finaluser').innerHTML = `Your final hand: ${score.user}, points: ${score.user_score}`;
+                    document.querySelector('.js-finalcomputer').innerHTML = `Computers hand: ${score.computer}, points: ${score.computer_score}`;
+                    document.querySelector('.js-result').innerHTML = compare(score.user_score, score.computer_score);
+                }
+                else {
+                    document.querySelector('.js-gametext').innerHTML = "Another card or pass?";
+                    const yes_button = document.createElement("BUTTON");
+                    yes_button.innerText = 'Card';
+                    yes_button.addEventListener('click', () => {
+                        no_button.remove();
+                        yes_button.remove();
+                        score.user.push(one_more_cards());
+                        score.user_score = parseInt(total_points(score.user));
+                        console.log(score.user_score);
+                        document.querySelector('.js-user').innerHTML = `Your cards: ${score.user}, points: ${score.user_score}`;
+                        idontknwo();
+
+                    });
+                    document.body.appendChild(yes_button);
+
+
+                    document.querySelector('.js-gametext').innerHTML = "Another card or pass?";
+                    const no_button = document.createElement("BUTTON");
+                    no_button.innerText = 'Pass';
+                    no_button.addEventListener('click', () => {
+                        playing = false;
+                        no_button.remove();
+                        yes_button.remove();
+
+                        while (score.computer_score != 0 && score.computer_score < 17) {
+                            score.computer.push(one_more_cards());
+                            score.computer_score = total_points(score.computer);
+                        }
+                        document.querySelector('.js-finaluser').innerHTML = `Your final hand: ${score.user}, points: ${score.user_score}`;
+                        document.querySelector('.js-finalcomputer').innerHTML = `Computers hand: ${score.computer}, points: ${score.computer_score}`;
+                        document.querySelector('.js-result').innerHTML = compare(score.user_score, score.computer_score);
+                    });
+                    document.body.appendChild(no_button);
+
+
+                }
+            }
+            idontknwo();
+
+            /*
+            document.querySelector('.js-gametext').innerHTML = "Another card or pass?";
+            const yes_button = document.createElement("BUTTON");
+            yes_button.innerText = 'Yes';
+            yes_button.addEventListener('click', () => {
+                user.push(one_more_cards());
+                
+                user_score = parseInt(total_points(user));
+                console.log(typeof user_score);
+                document.querySelector('.js-user').innerHTML = `Your cards: ${user}, points: ${user_score}`;
+            });
+            document.body.appendChild(yes_button);
+
+
+            ///////
+            document.querySelector('.js-gametext').innerHTML = "Another card or pass?";
+            const no_button = document.createElement("BUTTON");
+            no_button.innerText = 'No';
+            no_button.addEventListener('click', () => {
+                playing = false;
+            });
+            document.body.appendChild(no_button);
+
+
+            //////*/
+
+
+        }
+    </script>
+</body>
+
+</html>
